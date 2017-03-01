@@ -14,7 +14,7 @@ class Db
 
     private static $user = 'root';
     private static $password = 'root';
-    private static $db = 'kalender';
+    private static $db = 'restaurant_calendar';
     private static $host = 'localhost';
     private static $port = 3306;
 
