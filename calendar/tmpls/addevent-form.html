@@ -1,0 +1,164 @@
+<script type="text/javascript"
+        src="js/bootstrap-datetimepicker.js"></script>
+
+<div class="well">
+    <form class="form-horizontal" method="post" action="index.php?controller=bookings&action=create">
+        <div class="form-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls">
+                <input id="inputEmail" type="text" name="inputEmail" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="firstname">Vorname</label>
+            <div class="controls">
+                <input id="firstname"type="name" name="firstname" placeholder="Vorname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="inputSurename">Nachname</label>
+            <div class="controls">
+                <input id="inputSurename" type="name" name="surename" placeholder="Nachname">
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="street">Straße</label>
+            <div class="controls">
+                <input id="street" name="street" placeholder="Straße" class="input-medium" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="housenumber">Hausnummer</label>
+            <div class="controls">
+                <input id="housenumber" name="housenumber" placeholder="Hausnummer" class="input-medium" type="number">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="zipcode">PLZ</label>
+            <div class="controls">
+                <input id="zipcode" name="zipcode" placeholder="PLZ" class="input-medium" type="number">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="city">Ort</label>
+            <div class="controls">
+                <input id="city" name="city" placeholder="Ort" class="input-medium" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="phone">Telefon/Mobil</label>
+            <div class="controls">
+                <input id="phone" name="phone" placeholder="Nummer" class="input-medium" required="" type="text">
+
+            </div>
+        </div>
+        <div id="venuesList">
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Beschreibung
+                    </th>
+                    <th>
+                        Bild
+                    </th>
+                    <th>Features</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($venues as $venue) { ?>
+                <tr>
+                    <td>
+                        <div class="checkbox">
+                            <label><input id="venuebox<?php echo $venue->id ?>" name="venuelist[]"
+                                          value="<?php echo $venue->id ?>"
+                                          type="checkbox" /><?php echo $venue->id ?>
+                            </label>
+                        </div>
+                    </td>
+                    <td><?php echo $venue->name ?></td>
+                    <td><?php echo $venue->description ?></td>
+                    <td><img src="<?php echo $venue->picturepath ?>"></td>
+                    <td><?php foreach ($venue->getFeatures() as $feature) { ?>
+                        <div class="checkbox">
+                            <label>
+                                <input id="featurebox<?php echo $feature->id ?>" name="featurelist[]"
+                                       value="<?php echo $feature->id ?>"
+                                       type="checkbox" ><?php echo $feature->name ?>
+                            </label>
+                            <?php } ?>
+                    </div></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <label for="comment">Kommentar:</label>
+            <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="datetimepickerstart">Von</label>
+            <div class='input-group date' id='datetimepickerstart'>
+                <input type='text' class="form-control" name="begindatetime" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(function () {
+                        $('#datetimepickerstart').datetimepicker({locale: 'de'});
+                    });
+                });
+            </script>
+        </div>
+        <div class="form-group">
+            <label for="datetimepickerend">Bis</label>
+            <div class='input-group date' id='datetimepickerend'>
+                <input type='text' class="form-control" name="enddatetime" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(function () {
+                        $('#datetimepickerend').datetimepicker({locale: 'de',
+                        });
+                    });
+                });
+            </script>
+        </div>
+
+
+        <div class="form-group">
+            <div class="controls">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </div>
+    </form>
+
+</div>
